@@ -71,7 +71,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                 if (kDebugMode) {
                   print("Error");
                 }
-                contact = ref.watch(contactListProvider);
+                ref.read(contactListProvider.notifier).fetchContact(contactType: "error");
                 // ref.read(contactProvider);
               },
               child: const Text('Press error'),

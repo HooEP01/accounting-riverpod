@@ -78,11 +78,14 @@ class _MyHomePageState extends State<MyHomePage> {
       builder: (context, ref, child) {
         final AsyncValue<List<Item?>> contact = ref.watch(contactListProvider);
 
-        return switch (contact) {
-          AsyncData() => HomePage(title: widget.title),
-          AsyncError() => const HomeErrorPage(),
-          _ => const HomeSkeletonPage(),
-        };
+        return RefreshIndicator(
+          onRefresh: () async => {ref.refresh(contactListProvider.future)},
+          child: switch (contact) {
+            AsyncData() => HomePage(title: widget.title),
+            AsyncError() => const HomeErrorPage(),
+            _ => const HomeSkeletonPage(),
+          },
+        );
       },
     );
   }

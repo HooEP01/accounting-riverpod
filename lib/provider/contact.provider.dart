@@ -30,10 +30,13 @@ class ContactList extends _$ContactList {
         state = AsyncData(contact.item ?? []);
         return contact.item ?? [];
       }
-    } catch (e) {
+    } catch (e, stackTrace) {
       if (kDebugMode) {
         print('Catch error: $e');
       }
+
+      state = AsyncError(e, stackTrace);
+      throw AsyncError(e, stackTrace);
     }
 
     state = const AsyncData([]);
