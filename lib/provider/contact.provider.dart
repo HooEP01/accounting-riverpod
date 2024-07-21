@@ -21,9 +21,11 @@ class ContactList extends _$ContactList {
     }
 
     try {
-      var response = await dio.get('http://localhost:8080/contacts', queryParameters: {
-        'type': contactType,
-      });
+      var response = await wrapE(
+        () => dio.get('http://localhost:8080/contacts', queryParameters: {
+          'type': contactType,
+        }),
+      );
 
       if (response.statusCode == 200) {
         final contact = Contact.fromJson(response.data);
@@ -41,5 +43,26 @@ class ContactList extends _$ContactList {
 
     state = const AsyncData([]);
     return [];
+  }
+
+  Future<Response<T>> wrapE<T>(Future<Response<T>> Function() dioApi) async {
+    try {
+      return await dioApi();
+    } catch (error) {
+      if (kDebugMode) {
+        print('Error capture by wrapE: $error');
+      }
+      // if (error is DioException && error.type == DioExceptionType.badResponse) {
+      //   final Response<dynamic>? response = error.response;
+
+      //   throw DioException(
+      //     requestOptions: error.requestOptions,
+      //     response: error.response,
+      //     type: DioExceptionType.unknown,
+      //     error: errorMessage,
+      //   );
+      // }
+      rethrow;
+    }
   }
 }

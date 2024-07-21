@@ -31,7 +31,7 @@ class Item with _$Item {
     required int id,
     @Default('') @JsonKey(name: 'company_name') String companyName,
     @Default('') @JsonKey(name: 'other_name') String otherName,
-    @Default(null) List<Address>? addresses,
+    required List<Address> addresses,
   }) = _Item;
 
   factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);

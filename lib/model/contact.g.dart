@@ -41,10 +41,9 @@ _$ItemImpl _$$ItemImplFromJson(Map<String, dynamic> json) => _$ItemImpl(
       id: (json['id'] as num).toInt(),
       companyName: json['company_name'] as String? ?? '',
       otherName: json['other_name'] as String? ?? '',
-      addresses: (json['addresses'] as List<dynamic>?)
-              ?.map((e) => Address.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          null,
+      addresses: (json['addresses'] as List<dynamic>)
+          .map((e) => Address.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$ItemImplToJson(_$ItemImpl instance) =>

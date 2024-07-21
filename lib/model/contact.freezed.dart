@@ -365,7 +365,7 @@ mixin _$Item {
   String get companyName => throw _privateConstructorUsedError;
   @JsonKey(name: 'other_name')
   String get otherName => throw _privateConstructorUsedError;
-  List<Address>? get addresses => throw _privateConstructorUsedError;
+  List<Address> get addresses => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -381,7 +381,7 @@ abstract class $ItemCopyWith<$Res> {
       {int id,
       @JsonKey(name: 'company_name') String companyName,
       @JsonKey(name: 'other_name') String otherName,
-      List<Address>? addresses});
+      List<Address> addresses});
 }
 
 /// @nodoc
@@ -400,7 +400,7 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
     Object? id = null,
     Object? companyName = null,
     Object? otherName = null,
-    Object? addresses = freezed,
+    Object? addresses = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -415,10 +415,10 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
           ? _value.otherName
           : otherName // ignore: cast_nullable_to_non_nullable
               as String,
-      addresses: freezed == addresses
+      addresses: null == addresses
           ? _value.addresses
           : addresses // ignore: cast_nullable_to_non_nullable
-              as List<Address>?,
+              as List<Address>,
     ) as $Val);
   }
 }
@@ -434,7 +434,7 @@ abstract class _$$ItemImplCopyWith<$Res> implements $ItemCopyWith<$Res> {
       {int id,
       @JsonKey(name: 'company_name') String companyName,
       @JsonKey(name: 'other_name') String otherName,
-      List<Address>? addresses});
+      List<Address> addresses});
 }
 
 /// @nodoc
@@ -450,7 +450,7 @@ class __$$ItemImplCopyWithImpl<$Res>
     Object? id = null,
     Object? companyName = null,
     Object? otherName = null,
-    Object? addresses = freezed,
+    Object? addresses = null,
   }) {
     return _then(_$ItemImpl(
       id: null == id
@@ -465,10 +465,10 @@ class __$$ItemImplCopyWithImpl<$Res>
           ? _value.otherName
           : otherName // ignore: cast_nullable_to_non_nullable
               as String,
-      addresses: freezed == addresses
+      addresses: null == addresses
           ? _value._addresses
           : addresses // ignore: cast_nullable_to_non_nullable
-              as List<Address>?,
+              as List<Address>,
     ));
   }
 }
@@ -480,7 +480,7 @@ class _$ItemImpl implements _Item {
       {required this.id,
       @JsonKey(name: 'company_name') this.companyName = '',
       @JsonKey(name: 'other_name') this.otherName = '',
-      final List<Address>? addresses = null})
+      required final List<Address> addresses})
       : _addresses = addresses;
 
   factory _$ItemImpl.fromJson(Map<String, dynamic> json) =>
@@ -494,15 +494,12 @@ class _$ItemImpl implements _Item {
   @override
   @JsonKey(name: 'other_name')
   final String otherName;
-  final List<Address>? _addresses;
+  final List<Address> _addresses;
   @override
-  @JsonKey()
-  List<Address>? get addresses {
-    final value = _addresses;
-    if (value == null) return null;
+  List<Address> get addresses {
     if (_addresses is EqualUnmodifiableListView) return _addresses;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_addresses);
   }
 
   @override
@@ -548,7 +545,7 @@ abstract class _Item implements Item {
       {required final int id,
       @JsonKey(name: 'company_name') final String companyName,
       @JsonKey(name: 'other_name') final String otherName,
-      final List<Address>? addresses}) = _$ItemImpl;
+      required final List<Address> addresses}) = _$ItemImpl;
 
   factory _Item.fromJson(Map<String, dynamic> json) = _$ItemImpl.fromJson;
 
@@ -561,7 +558,7 @@ abstract class _Item implements Item {
   @JsonKey(name: 'other_name')
   String get otherName;
   @override
-  List<Address>? get addresses;
+  List<Address> get addresses;
   @override
   @JsonKey(ignore: true)
   _$$ItemImplCopyWith<_$ItemImpl> get copyWith =>
